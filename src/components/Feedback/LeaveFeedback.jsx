@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 
 class LeaveFeedback extends Component {
   static defaultButtons = ['good', 'neutral', 'bad'];
@@ -12,10 +11,8 @@ class LeaveFeedback extends Component {
 
   render() {
     const buttons = LeaveFeedback.defaultButtons.map(name => {
-      const id = nanoid(3);
-      console.log(id);
       return (
-        <li key={id}>
+        <li key={name}>
           <button>{name}</button>
         </li>
       );
