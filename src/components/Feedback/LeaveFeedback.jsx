@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import Section from 'components/Section/Section';
+import FeedbackOptions from './FeedbackOptions';
+import Statistics from './Statistics';
 
 class LeaveFeedback extends Component {
-  static defaultButtons = ['good', 'neutral', 'bad'];
+  static defaultOptionButtons = ['good', 'neutral', 'bad'];
 
   state = {
     good: 0,
@@ -9,19 +12,29 @@ class LeaveFeedback extends Component {
     bad: 0,
   };
 
-  render() {
-    const buttons = LeaveFeedback.defaultButtons.map(name => {
-      return (
-        <li key={name}>
-          <button>{name}</button>
-        </li>
-      );
+  handleClick = e => {
+    this.setState(prevState => {
+      return {
+        [e.target.name]: prevState[e.target.name] + 1,
+      };
     });
+  };
+
+  totalFedbacks;
+
+  render() {
+    const buttons = LeaveFeedback.defaultOptionButtons;
+    const { good, neutral, bad } = this.state;
+
     return (
-      <div>
-        <h2>Please leave Feedback</h2>
-        {buttons}
-      </div>
+      <>
+        <Section title="Please leave Feedback">
+          <FeedbackOptions buttons={buttons} handleFn={this.handleClick} />
+        </Section>
+        <Section title="Statistics">
+          <Statistics good={good} bad={bad} neutral={neutral} />
+        </Section>
+      </>
     );
   }
 }
