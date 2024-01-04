@@ -20,11 +20,19 @@ class LeaveFeedback extends Component {
     });
   };
 
-  totalFedbacks;
+  totalFedbacks = () => {
+    return Object.values(this.state).reduce((acc, val) => acc + val, 0);
+  };
+
+  positivePercentage = () => {
+    return Number(((this.state.good / this.totalFedbacks()) * 100).toFixed(2));
+  };
 
   render() {
     const buttons = LeaveFeedback.defaultOptionButtons;
     const { good, neutral, bad } = this.state;
+    const totalFedbacks = this.totalFedbacks();
+    const positivePercentage = this.positivePercentage();
 
     return (
       <>
@@ -32,7 +40,13 @@ class LeaveFeedback extends Component {
           <FeedbackOptions buttons={buttons} handleFn={this.handleClick} />
         </Section>
         <Section title="Statistics">
-          <Statistics good={good} bad={bad} neutral={neutral} />
+          <Statistics
+            good={good}
+            bad={bad}
+            neutral={neutral}
+            total={totalFedbacks}
+            positivePercentage={positivePercentage}
+          />
         </Section>
       </>
     );
