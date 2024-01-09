@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Section from 'components/Section/Section';
-import FeedbackOptions from './FeedbackOptions';
-import Statistics from './Statistics';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import Statistics from './Statistics/Statistics';
 
 class LeaveFeedback extends Component {
   static defaultOptionButtons = ['good', 'neutral', 'bad'];

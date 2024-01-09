@@ -1,5 +1,5 @@
 import css from './Statistics.module.css';
-import NotificationMessage from './NotificationMessage';
+import NotificationMessage from '../NotificationMessage/NotificationMessage';
 const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
   if (!good && !neutral && !bad) {
     return <NotificationMessage message="There is no feedback" />;
